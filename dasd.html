@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .urun-karti {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px;
+}
+
+.urun-karti img {
+  width: 100px;
+  height: 100px;
+}
+
+.urun-karti h3 {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.urun-karti p {
+  margin-top: 5px;
+}
+
+.urun-karti .fiyat {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.urun-karti .sepete-ekle {
+  background-color: #000;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <div class="urun-karti">
+        <img src="urun-gorseli.jpg" alt="Urun Gorseli">
+        <h3>Urun Adi</h3>
+        <p>Urun Aciklamasi</p>
+        <span class="fiyat">100 TL</span>
+        <button class="sepete-ekle">Sepete Ekle</button>
+      </div>
+      
+
+    <script>
+        const sepeteEkleButonlari = document.querySelectorAll(".sepete-ekle");
+
+for (const sepeteEkleButonu of sepeteEkleButonlari) {
+  sepeteEkleButonu.addEventListener("click", function() {
+    // Urunun ID'sini veya diğer bilgilerini buradan alabilirsiniz.
+    const urunId = this.parentNode.dataset.urunId;
+
+    // Sepet API'nize bir istek gönderin.
+    fetch("/api/sepete-ekle", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        urunId,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Sepet güncellendiyse gerekli görsel ve metinsel güncellemeleri yapın.
+        console.log("Ürün sepete eklendi!");
+      });
+  });
+}
+
+    </script>
+</body>
+</html>
