@@ -160,7 +160,7 @@
     top: calc(0.5% + 70px + 1% + 430px + 2%);
     left: 0.5%;
     width: 99%;
-    height: 400px;
+    height: 420px;
     display: flex;
     justify-content: flex-start;
     align-items: end;
